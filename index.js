@@ -4,6 +4,15 @@ const emotionRadios = document.getElementById("emotion-radios");
 
 emotionRadios.addEventListener("change", highlightCheckedOption);
 
+const getImageBtn = document.getElementById('get-image-btn')
+
+function getMatchingCatsArray() {
+  const choice = document.querySelector('input[type=radio]:checked')
+  console.log(choice.value)
+}
+
+getImageBtn.addEventListener('click', getMatchingCatsArray)
+
 function highlightCheckedOption(e) {
   const radios = document.getElementsByClassName('radio')
   for (let radio of radios) {
@@ -11,8 +20,6 @@ function highlightCheckedOption(e) {
   }
   document.getElementById(e.target.id).parentElement.classList.add('highlight')
 }
-
-
 
 function getEmotionsArray(arr) {
   const emotionsArray = [];
