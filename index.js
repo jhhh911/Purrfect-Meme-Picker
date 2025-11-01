@@ -7,10 +7,11 @@ const memeModal = document.getElementById("meme-modal");
 const memeModalInner = document.getElementById("meme-modal-inner");
 const closeBtn = document.getElementById("meme-modal-close-btn");
 
-closeBtn.addEventListener("click", closeModal);
+memeModal.addEventListener('click', closeModal);
 getImageBtn.addEventListener("click", renderCat);
 
-function closeModal() {
+function closeModal(e) {
+  if(e.target === memeModal || e.target === closeBtn)
   memeModal.style.display = "none";
 }
 
@@ -23,9 +24,7 @@ function renderCat() {
 
 function getSingleCatObject() {
   const catsArray = getMatchingCatsArray();
-  return catsArray
-    ? catsArray[Math.floor(Math.random() * catsArray.length)]
-    : null;
+  return catsArray[Math.floor(Math.random() * catsArray.length)]
 }
 
 function getMatchingCatsArray() {

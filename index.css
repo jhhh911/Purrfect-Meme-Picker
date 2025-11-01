@@ -130,7 +130,7 @@ input[type='radio'] {
     border: 1px solid #67595e;
     border-radius: 5px;
     width: 420px;
-    height: 490px;
+    height: 750px;
     background-color: #fff0ee;
 }
 
@@ -156,4 +156,9 @@ input[type='radio'] {
     color: white;
     background-color: #bd301d;
     border: 2px solid #bd301d;
+}
+
+.meme-modal-outer {
+  background-color: black;
+  height: 500px;
 }
