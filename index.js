@@ -16,29 +16,31 @@ function closeModal() {
 
 function renderCat() {
   const catObject = getSingleCatObject();
-  if(!catObject) return;
+  if (!catObject) return; // no match or no emotion selected
   memeModalInner.innerHTML = `<img src="images/${catObject.image}" class="cat-img" alt="${catObject.alt}">`;
   memeModal.style.display = "flex";
 }
 
 function getSingleCatObject() {
   const catsArray = getMatchingCatsArray();
-  return catsArray ? [Math.floor(Math.random() * catsArray.length)]
-  : null
+  return catsArray
+    ? catsArray[Math.floor(Math.random() * catsArray.length)]
+    : null;
 }
 
 function getMatchingCatsArray() {
   const selectedEmotion = emotionSelect.value;
   if (!selectedEmotion) return null;
-    const isGif = onlyGifs.checked;
 
-    return catsData.filter(cat => {
-      if (isGif) {
-        return cat.emotionTags.includes(selectedEmotion) && cat.isGif;
-      } else {
-        return cat.emotionTags.includes(selectedEmotion);
-      }
-    });
+  const isGif = onlyGifs.checked;
+
+  return catsData.filter(cat => {
+    if (isGif) {
+      return cat.emotionTags.includes(selectedEmotion) && cat.isGif;
+    } else {
+      return cat.emotionTags.includes(selectedEmotion);
+    }
+  });
 }
 
 function getEmotionsArray(arr) {
@@ -55,12 +57,10 @@ function getEmotionsArray(arr) {
 
 function renderEmotionOptions(cats) {
   const emotions = getEmotionsArray(cats);
-  let options = `<option value="">-- Choose an emotion --</option>`
-  for (let emotion of emotions) {
-    options += `
-        <option value='${emotion}'>${emotion}</option>
-        `;
-  }
+  let options = `<option value="">-- Choose an emotion --</option>`;
+  emotions.forEach(emotion => {
+    options += `<option value="${emotion}">${emotion}</option>`;
+  });
   emotionSelect.innerHTML = options;
 }
 
